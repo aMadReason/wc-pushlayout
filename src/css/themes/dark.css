@@ -1,0 +1,18 @@
+body[data-theme="dark"] {
+  /* Brand */
+  --tea-body-font: Verdana, Geneva, sans-serif;
+  --tea-color-1: #056f65; /* base color */
+  --tea-color-2: #2bbbad; /* usually lligher */
+  --tea-color-3: #004d40; /* usually darker */
+  --tea-color-attn: white;
+
+  /* Bakcground */
+  --tea-bg-1: rgb(28, 32, 34);
+  --tea-bg-2: #222831;
+  --tea-bg-3: rgb(17, 21, 24);
+
+  /* Txt */
+  --tea-txt-1: #eee;
+  --tea-txt-2: #ccc;
+  --tea-txt-3: #5e686f;
+}

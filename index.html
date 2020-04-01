@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.1/custom-elements-es5-adapter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.4.1/webcomponents-bundle.js"></script>
+    <script src="./src//Component.js"></script>
+
+    <style>
+      :root {
+        --tea-menu-open-width: 50%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      select#theme {
+        position: fixed;
+        bottom: 0;
+      }
+
+      #toggle {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        margin: 0.5rem 1rem;
+      }
+
+      tea-pushlayout [slot="content"],
+      tea-pushlayout [slot="menu"] {
+        margin: 1rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <tea-pushlayout data-open="true" data-transitions="true">
+      <div slot="content">
+        <article>
+          <h1>Push Layout</h1>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+            libero optio consequatur placeat enim amet molestiae error accusamus
+            nihil fugit at ex ratione quaerat magnam, aspernatur fugiat
+            architecto voluptas earum.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+            libero optio consequatur placeat enim amet molestiae error accusamus
+            nihil fugit at ex ratione quaerat magnam, aspernatur fugiat
+            architecto voluptas earum.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+            libero optio consequatur placeat enim amet molestiae error accusamus
+            nihil fugit at ex ratione quaerat magnam, aspernatur fugiat
+            architecto voluptas earum.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+            libero optio consequatur placeat enim amet molestiae error accusamus
+            nihil fugit at ex ratione quaerat magnam, aspernatur fugiat
+            architecto voluptas earum.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+            libero optio consequatur placeat enim amet molestiae error accusamus
+            nihil fugit at ex ratione quaerat magnam, aspernatur fugiat
+            architecto voluptas earum.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+            libero optio consequatur placeat enim amet molestiae error accusamus
+            nihil fugit at ex ratione quaerat magnam, aspernatur fugiat
+            architecto voluptas earum.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+            libero optio consequatur placeat enim amet molestiae error accusamus
+            nihil fugit at ex ratione quaerat magnam, aspernatur fugiat
+            architecto voluptas earum.
+          </p>
+        </article>
+      </div>
+      <div slot="menu">
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+          libero optio consequatur placeat enim amet molestiae error accusamus
+          nihil fugit at ex ratione quaerat magnam, aspernatur fugiat architecto
+          voluptas earum.
+        </p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+          libero optio consequatur placeat enim amet molestiae error accusamus
+          nihil fugit at ex ratione quaerat magnam, aspernatur fugiat architecto
+          voluptas earum.
+        </p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+          libero optio consequatur placeat enim amet molestiae error accusamus
+          nihil fugit at ex ratione quaerat magnam, aspernatur fugiat architecto
+          voluptas earum.
+        </p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+          libero optio consequatur placeat enim amet molestiae error accusamus
+          nihil fugit at ex ratione quaerat magnam, aspernatur fugiat architecto
+          voluptas earum.
+        </p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+          libero optio consequatur placeat enim amet molestiae error accusamus
+          nihil fugit at ex ratione quaerat magnam, aspernatur fugiat architecto
+          voluptas earum.
+        </p>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet
+          libero optio consequatur placeat enim amet molestiae error accusamus
+          nihil fugit at ex ratione quaerat magnam, aspernatur fugiat architecto
+          voluptas earum.
+        </p>
+      </div>
+    </tea-pushlayout>
+
+    <select id="theme" name="theme">
+      <option value="">Default</option>
+      <option value="dark">Dark</option>
+      <option value="light">Light</option>
+    </select>
+
+    <button id="toggle">Toggle</button>
+
+    <script src="src/index.js"></script>
+  </body>
+</html>
