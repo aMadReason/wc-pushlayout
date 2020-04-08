@@ -35,7 +35,9 @@ const css = `
       box-shadow var(--tea-transition, 0.5s ease);
   }
 
+  ::slotted([slot="content"]),
   ::slotted([slot="content"]) { 
+    min-height: auto;
     height: 100%;
   }
 
