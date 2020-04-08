@@ -1,131 +1,124 @@
 /* global ShadyCSS */
+
+/*
+Be sure to set the parent styles:
+overflow: hidden;
+height: 100vh;
+*/
+
 const css = `
   :host {
     display: flex;
-    flex-flow: row nowrap;
-    min-height: 100vh;
-    max-width: 100vw
     height: 100%;
+    width: 100%;
     align-items: stretch;
     overflow: hidden;
   }
 
   :host > * {
-    max-height: 100vh;
-    height: 100%;
-  }
-
-  :host([data-transitions="true"]) > * {
-    transition: width 0.5s ease; /* Only needed for ie11 */
-    transition: width var(--tea-transition, 0.5s ease);
-  }
-
-  :host [data-content-panel] {
-    flex: 2 0;
-    overflow-x: hidden;
     position: relative;
-    overflow: hidden;
-  }
-
-
-  :host [data-menu-panel] {
-    position: relative;
-    width: 0;
-    background: var(--tea-bg-2, #ffffff);
-  }
-
-  :host([data-transitions="true"]) [data-menu-panel] {
-    transition: width var(--tea-transition, 0.5s ease),
-    box-shadow var(--tea-transition, 0.5s ease);
-  }
-
-  :host > [data-content-panel] > div,
-  :host > [data-menu-panel] > div {
-    width: 100%;
-    height: auto;
-    min-height: 100%;
-    overflow-x: hidden;
-  }
-
-  :host > [data-content-panel] > div {
-    min-width: 300px;
-  }
-
-  :host .inner {
-    min-width: 200px;
-    height: 100%;
-    max-height: 100vh;
     overflow-y: auto;
   }
 
-  :host .inner > div {
-    text-align: right;    
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0px;
-    background: #fff;
-    background: rgba(255, 255, 255, 0.89);
-    background: var(--tea-bg-1, rgba(255, 255, 255, 0.89)); 
-    z-index: 1;
+  :host > div > div {
+    height: 100%;
+    min-height: auto;
+  }
+
+  :host [data-menu-panel] {
+    background: var(--tea-bg-2, #ffffff);
+  }
+
+  :host([data-transition="true"]) [data-menu-panel] {
+    transition: flex-basis var(--tea-transition, 0.5s ease), 
+      width var(--tea-transition, 0.5s ease),
+      box-shadow var(--tea-transition, 0.5s ease);
+  }
+
+  ::slotted([slot="content"]) { 
+    height: 100%;
+  }
+
+  /* Left & Right */
+  :host([data-position="right"]) {
+    flex-flow: row nowrap;
+  }
+  :host([data-position="left"]) {
+    flex-flow: row-reverse nowrap;
+  }
+  :host([data-position="right"]) .inner,
+  :host([data-position="left"]) .inner {
+    min-width: 200px;
+  }
+  :host([data-position="right"]) [data-content-panel],
+  :host([data-position="left"]) [data-content-panel] {
+    flex: 2 0;
+  }
+  :host([data-position="right"]) [data-menu-panel],
+  :host([data-position="left"]) [data-menu-panel] {
+    width: 0;
+  }
+  :host([data-open="true"][data-position="right"]) [data-menu-panel],
+  :host([data-open="true"][data-position="left"]) [data-menu-panel] {
+    width: 50%;
+  }
+
+
+  /* Top & Bottom */
+  :host([data-position="bottom"]) {
+    flex-flow: column nowrap;
+  }
+  :host([data-position="top"]) {
+    flex-flow: column-reverse nowrap;
+  }
+  :host([data-position="bottom"]) .inner,
+  :host([data-position="top"]) .inner {
+    min-height: 200px;
+    height: 100%;
+  }
+  :host([data-position="bottom"]) [data-content-panel],
+  :host([data-position="top"]) [data-content-panel] {
+    flex: 2;
+  }
+  :host([data-position="bottom"]) [data-menu-panel],
+  :host([data-position="top"]) [data-menu-panel] {
+    width: 100%;
+    flex-basis: 0;
+  }
+  :host([data-open="true"][data-position="bottom"]) [data-menu-panel],
+  :host([data-open="true"][data-position="top"]) [data-menu-panel] {
+    flex-basis: 50%;
+  }
+
+
+  /* Other stuff */
+  :host button.close {
+    border: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    min-height: 30px;
+    min-width: 30px;
+    margin: 3px;
+    color: var(--tea-txt-2, #333);
+    border-radius: 100%;
+    border: 2px solid transparent;
+    transition: border 0.3s ease, background 0.5s ease;
+    background: transparent;
+  }
+  :host([data-open]) button.close:hover {
+    cursor: pointer;
+    background: var(--tea-bg-2, #ddd);
+  }
+  :host([data-open]) button.close:focus {
+    cursor: pointer;
+    border: 2px solid var(--tea-txt-2, #333);
+  }
+
+  .topper {
     display: flex;
-    align-items: center;
     justify-content: space-between;
   }
 
- :host button.close {
-  border: 0;
-  font-size: 1rem;
-  font-weight: bold;
-  min-height: 30px;
-  min-width: 30px;
-  margin: 3px;
-  color: var(--tea-txt-2, #333);
-  border-radius: 100%;
-  border: 2px solid transparent;
-  transition: border 0.3s ease, background 0.5s ease;
-  background: transparent;
-}
-:host([data-open]) button.close:hover {
-  cursor: pointer;
-  background: var(--tea-bg-2, #ddd);
-}
-:host([data-open]) button.close:focus {
-  cursor: pointer;
-  border: 2px solid var(--tea-txt-2, #333);
-}
-
-  :host([data-open="true"]) > [data-menu-panel] {
-    width: 100%; /* Only needed for ie11 */
-    width: var(--tea-menu-open-width, 100%);
-    border-left: var(--tea-border, 1px solid var(--tea-bg-1, grey));
-    box-shadow: var(--tea-shadow, none);    
-  }
-
-  /* Medium devices (tablets, 768px and up) */
-  @media screen and (min-width: 768px) and (orientation: landscape) {
-    :host {
-      --tea-menu-open-width: 50%;
-    }
-
-    /* Only needed for ie11 */
-    :host([data-open="true"]) > [data-menu-panel] {
-      width: 50%;
-      width: var(--tea-menu-open-width, 50%);
-    }
-  }
-
-  /* Large devices (desktops, 992px and up) */
-  @media screen and (min-width: 992px) and (orientation: landscape) {
-    :host {
-      --tea-menu-open-width: 25%;
-    }
-
-    /* Only needed for ie11 */
-    :host([data-open="true"]) > [data-menu-panel] {
-      width: 25%;
-      width: var(--tea-menu-open-width, 25%);
-    }
-  }
 `;
 
 const markup = values => `
@@ -134,7 +127,6 @@ const markup = values => `
     <div>
       <div class="inner">
         <slot name="content"></slot>  
-        <slot></slot>  
       </div>
     </div>
   </div>
@@ -144,7 +136,7 @@ const markup = values => `
       <div class="inner">
         <div class="topper">
           <div class="title">
-          <slot name="menu-title"></slot> 
+            <slot name="menu-title"></slot> 
           </div>
           <button class="close" aria-label="close">
             ×
@@ -185,13 +177,13 @@ class Component extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ["data-open", "data-title"];
+    return ["data-open", "data-position"];
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log(name);
     if (oldValue === newValue) return false; // if value hadn't changed do nothing
     if (name === "data-title") this.titleEl.innerHTML = newValue;
+    //if (name === "data-position") this.resetHeight();
     this._dispatch("attribute-change");
     return this;
   }
@@ -202,6 +194,7 @@ class Component extends HTMLElement {
     this.menuEl.addEventListener("transitionend", e => {
       if (e.propertyName === "width") this._dispatch("toggle-panel");
     });
+    this.resetHeight();
   }
 
   disconnectedCallback() {
@@ -249,8 +242,17 @@ class Component extends HTMLElement {
     // if (e.key === "Tab") return this._handleTrapFocus(e);
   }
 
+  resetHeight() {
+    // height must be defined for top/bottom transition
+    if (this.getAttribute("data-transition") === "true") {
+      console.log(this.getBoundingClientRect());
+      this.style.height = `${this.getBoundingClientRect().height}px`;
+    }
+  }
+
   open(triggerEl = null) {
     if (triggerEl) this.triggerEl = triggerEl;
+    this.resetHeight();
     this.setAttribute("data-open", "true");
     this.elements.map(i => i.setAttribute("tabindex", 0));
     this.closeEl.focus();
