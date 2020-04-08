@@ -13,17 +13,20 @@ import "./css/themes/light.css";
 //   document.body.setAttribute("data-theme", theme);
 // })();
 
-const selector = document.querySelector('[name="theme"]');
-if (selector) {
-  selector.addEventListener("change", e => {
-    document.body.setAttribute("data-theme", e.target.value);
+(() => {
+  const selector = document.querySelector('[name="theme"]');
+  if (selector) {
+    selector.addEventListener("change", e => {
+      document.body.setAttribute("data-theme", e.target.value);
+    });
+  }
+  /* end theme switcher */
+
+  const toggler = document.querySelector("#toggle");
+  const pushlayout = document.querySelector("tea-pushlayout");
+
+  toggler.addEventListener("click", e => {
+    console.log(12);
+    pushlayout.toggle(toggler);
   });
-}
-/* end theme switcher */
-
-const toggler = document.querySelector("#toggle");
-const pushlayout = document.querySelector("tea-pushlayout");
-
-toggler.addEventListener("click", e => {
-  pushlayout.toggle(toggler);
-});
+})();
