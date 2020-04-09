@@ -36,10 +36,11 @@ const css = `
   }
 
   ::slotted([slot="content"]),
-  ::slotted([slot="content"]) { 
+  ::slotted([slot="menu"]) { 
     min-height: auto;
     height: 100%;
   }
+
 
   /* Left & Right */
   :host([data-position="right"]) {
@@ -77,10 +78,11 @@ const css = `
   :host([data-position="top"]) .inner {
     min-height: 200px;
     height: 100%;
+    position: relative;
   }
   :host([data-position="bottom"]) [data-content-panel],
   :host([data-position="top"]) [data-content-panel] {
-    flex: 2;
+    flex: 2 1 100%;
   }
   :host([data-position="bottom"]) [data-menu-panel],
   :host([data-position="top"]) [data-menu-panel] {
@@ -120,7 +122,6 @@ const css = `
     display: flex;
     justify-content: space-between;
   }
-
 `;
 
 const markup = values => `
@@ -244,10 +245,22 @@ class Component extends HTMLElement {
     // if (e.key === "Tab") return this._handleTrapFocus(e);
   }
 
+  getDimensions() {
+    const content = this.dom.querySelector("[data-content-panel] .inner");
+    const menu = this.dom.querySelector("[data-menu-panel] .inner");
+    return {
+      hostHeight: this.getBoundingClientRect().height,
+      contentHeight: content.getBoundingClientRect().height,
+      menuHeight: menu.getBoundingClientRect().height,
+      hostWidth: this.getBoundingClientRect().width,
+      contentWidth: content.getBoundingClientRect().width,
+      menuWidth: menu.getBoundingClientRect().width
+    };
+  }
+
   resetHeight() {
     // height must be defined for top/bottom transition
     if (this.getAttribute("data-transition") === "true") {
-      console.log(this.getBoundingClientRect());
       this.style.height = `${this.getBoundingClientRect().height}px`;
     }
   }
