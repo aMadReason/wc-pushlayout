@@ -26,13 +26,14 @@ const css = `
   }
 
   :host [data-menu-panel] {
-    background: var(--tea-bg-2, #ffffff);
+    background: var(--wc-bg-2, #ffffff);
   }
 
-  :host([data-transition="true"]) [data-menu-panel] {
-    transition: flex-basis var(--tea-transition, 0.5s ease), 
-      width var(--tea-transition, 0.5s ease),
-      box-shadow var(--tea-transition, 0.5s ease);
+  :host([data-transition="true"]) [data-menu-panel],
+  :host([data-transition="true"]) [data-content-panel] {
+    transition: flex-basis var(--wc-transition, 0.5s ease), 
+      width var(--wc-transition, 0.5s ease),
+      box-shadow var(--wc-transition, 0.5s ease);
   }
 
   ::slotted([slot="content"]),
@@ -40,7 +41,6 @@ const css = `
     min-height: auto;
     height: 100%;
   }
-
 
   /* Left & Right */
   :host([data-position="right"]) {
@@ -51,7 +51,8 @@ const css = `
   }
   :host([data-position="right"]) .inner,
   :host([data-position="left"]) .inner {
-    min-width: 200px;
+    min-width: var(--wc-pushdrawer-minwidth, 200px);
+    height: 100%;
   }
   :host([data-position="right"]) [data-content-panel],
   :host([data-position="left"]) [data-content-panel] {
@@ -63,7 +64,7 @@ const css = `
   }
   :host([data-open="true"][data-position="right"]) [data-menu-panel],
   :host([data-open="true"][data-position="left"]) [data-menu-panel] {
-    width: 50%;
+    width: var(--wc-pushdrawer-maxwidth, 100%);
   }
 
 
@@ -76,7 +77,7 @@ const css = `
   }
   :host([data-position="bottom"]) .inner,
   :host([data-position="top"]) .inner {
-    min-height: 200px;
+    min-height: var(--wc-pushdrawer-minheight, 200px);
     height: 100%;
     position: relative;
   }
@@ -87,11 +88,15 @@ const css = `
   :host([data-position="bottom"]) [data-menu-panel],
   :host([data-position="top"]) [data-menu-panel] {
     width: 100%;
-    flex-basis: 0;
+    flex: 2 1 0;
   }
   :host([data-open="true"][data-position="bottom"]) [data-menu-panel],
   :host([data-open="true"][data-position="top"]) [data-menu-panel] {
-    flex-basis: 50%;
+    flex-basis: var(--wc-pushdrawer-maxheight, 100%);
+  }
+  :host([data-open="true"][data-position="bottom"]) [data-content-panel],
+  :host([data-open="true"][data-position="top"]) [data-content-panel] {
+    flex-basis: calc(100% - var(--wc-pushdrawer-maxheight, 100%));
   }
 
 
@@ -103,7 +108,7 @@ const css = `
     min-height: 30px;
     min-width: 30px;
     margin: 3px;
-    color: var(--tea-txt-2, #333);
+    color: var(--wc-txt-2, #333);
     border-radius: 100%;
     border: 2px solid transparent;
     transition: border 0.3s ease, background 0.5s ease;
@@ -111,17 +116,18 @@ const css = `
   }
   :host([data-open]) button.close:hover {
     cursor: pointer;
-    background: var(--tea-bg-2, #ddd);
+    background: var(--wc-bg-2, #ddd);
   }
   :host([data-open]) button.close:focus {
     cursor: pointer;
-    border: 2px solid var(--tea-txt-2, #333);
+    border: 2px solid var(--wc-txt-2, #333);
   }
 
   .topper {
     display: flex;
     justify-content: space-between;
   }
+
 `;
 
 const markup = values => `
@@ -288,7 +294,7 @@ class Component extends HTMLElement {
   }
 }
 
-const tag = "tea-pushlayout";
+const tag = "wc-pushdrawer";
 if (window.customElements.get(tag) === undefined) {
   window.customElements.define(tag, Component);
 }

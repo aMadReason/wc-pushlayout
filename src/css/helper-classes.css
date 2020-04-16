@@ -29,12 +29,12 @@ button.small {
 /** Form Helpers **/
 .field {
   position: relative;
-  padding: calc(var(--tea-spacing) / 2) 0 0;
+  padding: calc(var(--wc-spacing) / 2) 0 0;
   margin-top: 0.8rem;
 }
 
 .field label {
-  margin-right: calc(var(--tea-spacing) / 2);
+  margin-right: calc(var(--wc-spacing) / 2);
   text-align: left;
 }
 
@@ -72,7 +72,7 @@ ul.inline {
 }
 
 ul.inline li {
-  margin: 0 calc(var(--tea-spacing) / 2);
+  margin: 0 calc(var(--wc-spacing) / 2);
   display: inline-block;
   vertical-align: top;
 }
@@ -92,11 +92,11 @@ ul.inline li {
 }
 
 .text-divider::after {
-  margin-left: var(--tea-spacing, 1rem);
+  margin-left: var(--wc-spacing, 1rem);
 }
 
 .text-divider::before {
-  margin-right: var(--tea-spacing, 1rem);
+  margin-right: var(--wc-spacing, 1rem);
 }
 
 /* Accessibility checks */

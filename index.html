@@ -9,7 +9,8 @@
 
     <style>
       :root {
-        --tea-menu-open-width: 50%;
+        --wc-pushdrawer-maxwidth: 50%;
+        --wc-pushdrawer-maxheight: 100%;
       }
 
       body {
@@ -28,15 +29,15 @@
         margin: 0.5rem 1rem;
       }
 
-      tea-pushlayout {
+      wc-pushdrawer {
         height: 100%;
         width: 100%;
         max-height: 100vh;
         max-width: 100vw;
       }
 
-      tea-pushlayout [slot="content"] > *,
-      tea-pushlayout [slot="menu"] > * {
+      wc-pushdrawer [slot="content"] > *,
+      wc-pushdrawer [slot="menu"] > * {
         /* margin: 1rem; */
         padding: 0 0.5rem;
         /* min-height: 100%; */
@@ -49,7 +50,7 @@
   </head>
 
   <body>
-    <tea-pushlayout
+    <wc-pushdrawer
       data-position="bottom"
       data-open="true"
       data-transition="true"
@@ -103,7 +104,7 @@
           voluptas earum.
         </p>
       </div>
-    </tea-pushlayout>
+    </wc-pushdrawer>
 
     <select id="theme" name="theme">
       <option value="">Default</option>

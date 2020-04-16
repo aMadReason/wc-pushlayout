@@ -23,7 +23,7 @@ import "./css/themes/light.css";
   /* end theme switcher */
 
   const toggler = document.querySelector("#toggle");
-  const pushlayout = document.querySelector("tea-pushlayout");
+  const pushlayout = document.querySelector("wc-pushdrawer");
 
   toggler.addEventListener("click", e => {
     console.log(12);
